@@ -1,0 +1,66 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+svg#map {
+  width: auto;
+  background: black;
+}
+
+text.location {
+  fill: white;
+}
+
+circle {
+  r: 0.1;
+}
+
+circle.estimated {
+  fill: grey;
+}
+
+circle.delay0 {
+  fill: #0f0;
+}
+
+circle.delay1 {
+  fill: white;
+}
+
+circle.delay2,
+circle.delay3 {
+  fill: yellow;
+}
+
+circle.delay4,
+circle.delay5,
+circle.delay6,
+circle.delay7 {
+  fill: orange;
+}
+
+circle.delay8 {
+  fill: red;
+}
+
+circle.arrived {
+  r: 0.2;
+}
