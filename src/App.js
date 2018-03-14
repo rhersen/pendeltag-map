@@ -13,7 +13,7 @@ class App extends Component {
     super(props)
     this.state = {
       stations: {},
-      selectedTrain: null,
+      selectedTrain: 0,
       train: [],
       trains: [],
     }
@@ -74,7 +74,13 @@ class App extends Component {
           !train.length ? (
             <div>selected {selectedTrain}</div>
           ) : (
-            <Map stations={stations} train={train} />
+            <Map
+              stations={stations}
+              train={train}
+              back={() => {
+                this.setState({ selectedTrain: 0 })
+              }}
+            />
           )
         ) : trains.length ? (
           <TrainList

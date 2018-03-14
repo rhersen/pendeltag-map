@@ -64,3 +64,8 @@ circle.delay8 {
 circle.arrived {
   r: 0.2;
 }
+
+circle.back {
+  r: 0.5;
+  fill: red;
+}
