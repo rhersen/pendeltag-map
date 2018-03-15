@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import map from 'lodash/map'
-import * as filters from './train'
+import * as filters from './filters'
 import * as classes from './classes'
 
 export default class Map extends Component {

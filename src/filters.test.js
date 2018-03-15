@@ -1,10 +1,10 @@
-import * as train from './train'
+import * as filters from './filters'
 
 test('estimated', () => {
-  expect(train.estimated([])).toEqual([])
+  expect(filters.estimated([])).toEqual([])
 
   expect(
-    train.estimated([
+    filters.estimated([
       activity('Flb', 'Avgang', '07:14', '07:15'),
       activity('Hu', 'Ankomst', '07:17'),
       activity('Hu', 'Avgang', '07:17'),
@@ -16,9 +16,9 @@ test('estimated', () => {
 })
 
 test('departed', () => {
-  expect(train.departed([])).toEqual([])
+  expect(filters.departed([])).toEqual([])
   expect(
-    train.departed([
+    filters.departed([
       activity('Flb', 'Ankomst', '07:14', '07:14'),
       activity('Flb', 'Avgang', '07:14', '07:15'),
       activity('Hu', 'Ankomst', '07:17'),
@@ -28,16 +28,16 @@ test('departed', () => {
 })
 
 test('arrived', () => {
-  expect(train.arrived([])).toEqual([])
+  expect(filters.arrived([])).toEqual([])
   expect(
-    train.arrived([
+    filters.arrived([
       activity('Flb', 'Avgang', '07:14', '07:15'),
       activity('Hu', 'Ankomst', '07:17'),
       activity('Hu', 'Avgang', '07:17'),
     ])
   ).toEqual([])
   expect(
-    train.arrived([
+    filters.arrived([
       activity('Flb', 'Avgang', '07:14', '07:15'),
       activity('Hu', 'Ankomst', '07:17', '07:17'),
       activity('Hu', 'Avgang', '07:17'),
