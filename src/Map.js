@@ -9,7 +9,11 @@ export default class Map extends Component {
     return (
       <svg id="map" className="App-logo" viewBox="173 0 10 16">
         <g>
-          <circle onClick={back} className="back" cx="182" cy="1" />
+          <polygon
+            onClick={back}
+            className="back"
+            points="174.5 1.5, 173.5 1, 174.5 0.5"
+          />
           {map(stations, (v, k) => (
             <text className="location" key={k} x={x(v)} y={y(v)} fontSize="0.3">
               {k}
