@@ -3,36 +3,50 @@ import map from 'lodash/map'
 
 export default class TrainList extends Component {
   render() {
-    const { trains, onClick } = this.props
+    const { trains, onClick, stations } = this.props
     return (
-      <ol>
+      <ul>
         {trains.map(t => (
           <li key={id(t)} onClick={() => onClick(id(t))}>
-            Tåg {id(t)} mot {this.destination(t)} {this.activity(t)}{' '}
-            {this.location(t)} klockan {this.time(t)}
+            Tåg {id(t)} mot {destination(t)} {activity(t)} {location(t)} klockan{' '}
+            {time(t)}
           </li>
         ))}
-      </ol>
+      </ul>
     )
-  }
 
-  destination(train) {
-    return map(train.ToLocation, 'LocationName').join()
-  }
+    function destination(train) {
+      return map(train.ToLocation, to => {
+        return (
+          (stations &&
+            stations[to.LocationName] &&
+            stations[to.LocationName].AdvertisedLocationName) ||
+          to.LocationName
+        )
+      }).join()
+    }
 
-  activity(train) {
-    return train.ActivityType
-  }
+    function activity(train) {
+      return (
+        train.ActivityType && train.ActivityType.substring(0, 3).toLowerCase()
+      )
+    }
 
-  location(train) {
-    return train.LocationSignature
-  }
+    function location(train) {
+      return (
+        (stations &&
+          stations[train.LocationSignature] &&
+          stations[train.LocationSignature].AdvertisedLocationName) ||
+        train.LocationSignature
+      )
+    }
 
-  time(train) {
-    return train.TimeAtLocation
+    function time(train) {
+      return train.TimeAtLocation && train.TimeAtLocation.substring(11, 16)
+    }
   }
 }
 
 function id(train) {
-  return train.AdvertisedTrainIdent
+  return train.AdvertisedTrainIdent || 0
 }
