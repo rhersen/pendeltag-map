@@ -13,6 +13,19 @@
   font-size: large;
 }
 
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li.train {
+  text-align: center;
+  background-color: #eee;
+  padding: 4px;
+  margin: 0.5em;
+  border: thin solid;
+}
+
 svg#map {
   width: auto;
   background: black;

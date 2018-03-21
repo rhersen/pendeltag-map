@@ -30,7 +30,7 @@ describe('TrainList', () => {
 
     ReactDOM.render(<TrainList trains={[{}]} />, div)
 
-    expect(map(items(div), 'innerHTML')).toEqual(['Tåg 0 mot    klockan '])
+    expect(map(items(div), 'innerHTML')).toEqual(['Tåg 0 mot <br>  kl '])
   })
 
   it('one train', () => {
@@ -48,7 +48,7 @@ describe('TrainList', () => {
     )
 
     expect(map(items(div), 'innerHTML')).toEqual([
-      'Tåg 2222 mot Märsta avg Tumba klockan 17:50',
+      'Tåg 2222 mot Märsta<br>avg Tumba kl 17:50',
     ])
   })
 
@@ -58,7 +58,7 @@ describe('TrainList', () => {
     ReactDOM.render(<TrainList trains={[train]} stations={{}} />, div)
 
     expect(map(items(div), 'innerHTML')).toEqual([
-      'Tåg 2222 mot Mr avg Tu klockan 17:50',
+      'Tåg 2222 mot Mr<br>avg Tu kl 17:50',
     ])
   })
 })

@@ -7,9 +7,10 @@ export default class TrainList extends Component {
     return (
       <ul>
         {trains.map(t => (
-          <li key={id(t)} onClick={() => onClick(id(t))}>
-            Tåg {id(t)} mot {destination(t)} {activity(t)} {location(t)} klockan{' '}
-            {time(t)}
+          <li className="train" key={id(t)} onClick={() => onClick(id(t))}>
+            Tåg {id(t)} mot {destination(t)}
+            <br />
+            {activity(t)} {location(t)} kl {time(t)}
           </li>
         ))}
       </ul>
