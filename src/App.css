@@ -24,6 +24,7 @@ li.train {
   padding: 4px;
   margin: 0.5em;
   border: thin solid;
+  border-radius: 8px;
 }
 
 svg#map {

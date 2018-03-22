@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import map from 'lodash/map'
+import sortBy from 'lodash/sortBy'
 
 export default class TrainList extends Component {
   render() {
     const { trains, onClick, stations } = this.props
+    const sorted = sortBy(trains, train => -this.north(train))
     return (
       <ul>
-        {trains.map(t => (
+        {sorted.map(t => (
           <li className="train" key={id(t)} onClick={() => onClick(id(t))}>
             Tåg {id(t)} mot {destination(t)}
             <br />
@@ -45,6 +47,12 @@ export default class TrainList extends Component {
     function time(train) {
       return train.TimeAtLocation && train.TimeAtLocation.substring(11, 16)
     }
+  }
+
+  north(train) {
+    const { stations } = this.props
+    const station = stations && stations[train.LocationSignature]
+    return station ? 0 + station.north : 0
   }
 }
 

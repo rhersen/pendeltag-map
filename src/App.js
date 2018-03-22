@@ -22,7 +22,6 @@ class App extends Component {
   componentDidMount() {
     this.getStations()
     this.getTrains()
-    // this.getTrain()
   }
 
   getStations() {

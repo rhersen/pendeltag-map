@@ -9,12 +9,25 @@ function items(div) {
 }
 
 describe('TrainList', () => {
-  const train = {
+  const train1 = {
     ActivityType: 'Avgang',
     AdvertisedTrainIdent: 2222,
     LocationSignature: 'Tu',
     TimeAtLocation: '2018-02-16T17:50:00',
     ToLocation: [{ LocationName: 'Mr' }],
+  }
+
+  const train2 = {
+    ActivityType: 'Ankomst',
+    AdvertisedTrainIdent: 2223,
+    LocationSignature: 'Mr',
+    TimeAtLocation: '2018-02-16T17:49:00',
+    ToLocation: [{ LocationName: 'Mr' }],
+  }
+
+  const stations = {
+    Mr: { AdvertisedLocationName: 'Märsta', north: '59.6277190922148' },
+    Tu: { AdvertisedLocationName: 'Tumba', north: '59.1994943690945' },
   }
 
   it('empty list', () => {
@@ -33,21 +46,16 @@ describe('TrainList', () => {
     expect(map(items(div), 'innerHTML')).toEqual(['Tåg 0 mot <br>  kl '])
   })
 
-  it('one train', () => {
+  it('sorts', () => {
     const div = document.createElement('div')
 
     ReactDOM.render(
-      <TrainList
-        trains={[train]}
-        stations={{
-          Mr: { AdvertisedLocationName: 'Märsta' },
-          Tu: { AdvertisedLocationName: 'Tumba' },
-        }}
-      />,
+      <TrainList trains={[train1, train2]} stations={stations} />,
       div
     )
 
     expect(map(items(div), 'innerHTML')).toEqual([
+      'Tåg 2223 mot Märsta<br>ank Märsta kl 17:49',
       'Tåg 2222 mot Märsta<br>avg Tumba kl 17:50',
     ])
   })
@@ -55,7 +63,7 @@ describe('TrainList', () => {
   it('train missing from stations', () => {
     const div = document.createElement('div')
 
-    ReactDOM.render(<TrainList trains={[train]} stations={{}} />, div)
+    ReactDOM.render(<TrainList trains={[train1]} stations={{}} />, div)
 
     expect(map(items(div), 'innerHTML')).toEqual([
       'Tåg 2222 mot Mr<br>avg Tu kl 17:50',
