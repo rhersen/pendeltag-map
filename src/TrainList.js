@@ -4,29 +4,28 @@ import sortBy from 'lodash/sortBy'
 
 export default class TrainList extends Component {
   render() {
-    const { trains, onClick, stations } = this.props
-    const sorted = sortBy(trains, train => -this.north(train))
+    const { onClick, stations } = this.props
     return (
       <ul>
-        {sorted.map(t => (
+        {this.trains().map(t => (
           <li className="train" key={id(t)} onClick={() => onClick(id(t))}>
             Tåg {id(t)} mot {destination(t)}
             <br />
-            {activity(t)} {location(t)} kl {time(t)}
+            {activity(t)} {this.location(t)} kl {time(t)}
           </li>
         ))}
       </ul>
     )
 
     function destination(train) {
-      return map(train.ToLocation, to => {
-        return (
+      return map(
+        train.ToLocation,
+        to =>
           (stations &&
             stations[to.LocationName] &&
             stations[to.LocationName].AdvertisedLocationName) ||
           to.LocationName
-        )
-      }).join()
+      ).join()
     }
 
     function activity(train) {
@@ -35,24 +34,28 @@ export default class TrainList extends Component {
       )
     }
 
-    function location(train) {
-      return (
-        (stations &&
-          stations[train.LocationSignature] &&
-          stations[train.LocationSignature].AdvertisedLocationName) ||
-        train.LocationSignature
-      )
-    }
-
     function time(train) {
       return train.TimeAtLocation && train.TimeAtLocation.substring(11, 16)
     }
   }
 
+  trains() {
+    return sortBy(this.props.trains, train => -this.north(train))
+  }
+
   north(train) {
-    const { stations } = this.props
-    const station = stations && stations[train.LocationSignature]
+    const station = this.station(train.LocationSignature)
     return station ? 0 + station.north : 0
+  }
+
+  location(train) {
+    const station = this.station(train.LocationSignature)
+    return station ? station.AdvertisedLocationName : train.LocationSignature
+  }
+
+  station(locSig) {
+    const { stations } = this.props
+    return stations && stations[locSig]
   }
 }
 
