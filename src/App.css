@@ -45,7 +45,9 @@ circle.estimated {
 }
 
 circle.delay0,
-circle.delay-1 {
+circle.delay-1,
+circle.delay-2,
+circle.delay-3 {
   fill: #0f0;
 }
 

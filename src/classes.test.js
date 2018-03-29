@@ -15,13 +15,13 @@ describe('actual', () => {
     ).toBe('delay1')
   })
 
-  test('one minute early', () => {
+  test('three minutes early', () => {
     expect(
       classes.delay({
         AdvertisedTimeAtLocation: '2018-01-03T21:45:00',
-        TimeAtLocation: '2018-01-03T21:44:00',
+        TimeAtLocation: '2018-01-03T21:42:00',
       })
-    ).toBe('delay-1')
+    ).toBe('delay-3')
   })
 
   test('more than 8 minutes late', () => {
