@@ -4,14 +4,7 @@
   ],
   "extends": "react-app",
   "rules": {
-    "prettier/prettier": [
-      "error",
-      {
-        "semi": false,
-        "singleQuote": true,
-        "trailingComma": "es5"
-      }
-    ],
+    "prettier/prettier": ["error"],
     "no-console": "warn",
     "no-else-return": "error",
     "no-var": "error",

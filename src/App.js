@@ -73,13 +73,16 @@ class App extends Component {
           !train.length ? (
             <div>selected {selectedTrain}</div>
           ) : (
-            <Map
-              stations={stations}
-              train={train}
-              back={() => {
-                this.setState({ selectedTrain: 0 })
-              }}
-            />
+            <div>
+              <button
+                onClick={() => {
+                  this.setState({ selectedTrain: 0 })
+                }}
+              >
+                {'<'}
+              </button>
+              <Map stations={stations} train={train} isFull={true} />
+            </div>
           )
         ) : trains.length ? (
           <TrainList
