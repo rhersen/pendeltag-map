@@ -90,7 +90,11 @@ class App extends Component {
                   this.setState({ isZoomed: ev.target.checked })
                 }}
               />
-              <Map stations={stations} train={train} isFull={!isZoomed} />
+              <Map
+                stations={stations}
+                train={train}
+                isFull={isZoomed ? 2 : 1}
+              />
             </form>
           )
         ) : trains.length ? (
