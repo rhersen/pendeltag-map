@@ -3,8 +3,8 @@ import zoom from './zoom'
 describe('actual', () => {
   test('zoomed', () => {
     expect(zoom()).toEqual({
-      viewBox: '176 12 6 10',
-      yScale: 26,
+      viewBox: '176 11.5 6 9.6',
+      yScale: 25,
     })
   })
 

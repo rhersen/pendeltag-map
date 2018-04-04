@@ -1,7 +1,7 @@
 export default function zoom(isFull) {
   const zoomed = {
-    viewBox: '176 12 6 10',
-    yScale: 26,
+    viewBox: '176 11.5 6 9.6',
+    yScale: 25,
   }
 
   const full = {
