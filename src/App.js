@@ -16,7 +16,7 @@ class App extends Component {
       selectedTrain: 0,
       train: [],
       trains: [],
-      isZoomed: false,
+      zoom: 2,
     }
   }
 
@@ -67,7 +67,7 @@ class App extends Component {
   }
 
   render() {
-    const { stations, selectedTrain, train, trains, isZoomed } = this.state
+    const { stations, selectedTrain, train, trains, zoom } = this.state
     return (
       <div className="App">
         {selectedTrain ? (
@@ -82,19 +82,14 @@ class App extends Component {
               >
                 {'<'}
               </button>
-              <label htmlFor="zoom">zoom</label>
               <input
-                type="checkbox"
-                id="zoom"
-                onChange={ev => {
-                  this.setState({ isZoomed: ev.target.checked })
-                }}
+                type="range"
+                min={1}
+                max={2}
+                step={0.01}
+                onChange={({ target }) => this.setState({ zoom: target.value })}
               />
-              <Map
-                stations={stations}
-                train={train}
-                isFull={isZoomed ? 2 : 1}
-              />
+              <Map stations={stations} train={train} isFull={zoom} />
             </form>
           )
         ) : trains.length ? (
